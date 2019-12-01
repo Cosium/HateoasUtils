@@ -2,95 +2,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.cos.maven</groupId>
-        <artifactId>maven-superpom</artifactId>
-        <version>1.06.17</version>
-    </parent>
-    <groupId>rocks.spiffy</groupId>
-    <artifactId>HateoasUtils</artifactId>
-    <version>1.1.00.cosium-SNAPSHOT</version>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.cos.maven</groupId>
+    <artifactId>maven-superpom</artifactId>
+    <version>1.06.17</version>
+  </parent>
+  <groupId>rocks.spiffy</groupId>
+  <artifactId>HateoasUtils</artifactId>
+  <version>1.1.00.cosium-SNAPSHOT</version>
 
-    <name>Hateoas Utils</name>
-    <description>Some utilities to augment the functionality of the Spring Hateoas project</description>
+  <name>Hateoas Utils</name>
+  <description>Some utilities to augment the functionality of the Spring Hateoas project</description>
+  <url>https://github.com/ununbium/HateoasUtils</url>
+
+  <developers>
+    <developer>
+      <name>Andrew Hill</name>
+      <email>andy.hill.dev@gmail.com</email>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
     <url>https://github.com/ununbium/HateoasUtils</url>
+  </scm>
 
-    <developers>
-        <developer>
-            <name>Andrew Hill</name>
-            <email>andy.hill.dev@gmail.com</email>
-        </developer>
-    </developers>
+  <properties>
+    <spring-web.version>5.2.1.RELEASE</spring-web.version>
+    <spring-hateoas.version>1.0.1.RELEASE</spring-hateoas.version>
+    <junit.version>4.12</junit.version>
+    <mockito-all.version>1.8.5</mockito-all.version>
+  </properties>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring-web.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
-    <scm>
-        <url>https://github.com/ununbium/HateoasUtils</url>
-    </scm>
+    <dependency>
+      <groupId>org.springframework.hateoas</groupId>
+      <artifactId>spring-hateoas</artifactId>
+      <version>${spring-hateoas.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
-    <properties>
-        <spring-web.version>5.2.1.RELEASE</spring-web.version>
-        <spring-hateoas.version>1.0.1.RELEASE</spring-hateoas.version>
-        <junit.version>4.12</junit.version>
-        <mockito-all.version>1.8.5</mockito-all.version>
-    </properties>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring-web.version}</version>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>${mockito-all.version}</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.springframework.hateoas</groupId>
-            <artifactId>spring-hateoas</artifactId>
-            <version>${spring-hateoas.version}</version>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring-web.version}</version>
+      <!--<scope>test</scope>-->
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-web.version}</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito-all.version}</version>
-            <scope>test</scope>
-        </dependency>
+  </dependencies>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring-web.version}</version>
-            <!--<scope>test</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring-web.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+          <configuration>
+            <!--Java 11 migration-->
+            <argLine>
+              --illegal-access=permit
+            </argLine>
+            <trimStackTrace>false</trimStackTrace>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>
