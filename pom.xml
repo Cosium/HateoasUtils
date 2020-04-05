@@ -4,7 +4,7 @@
 
     <groupId>rocks.spiffy</groupId>
     <artifactId>HateoasUtils</artifactId>
-    <version>2.0.0.0.cosium</version>
+    <version>2.0.0.1.cosium-SNAPSHOT</version>
 
     <name>Hateoas Utils</name>
     <description>Some utilities to augment the functionality of the Spring Hateoas project</description>
@@ -28,7 +28,7 @@
     <scm>
         <connection>scm:git:git@github.com:Cosium/HateoasUtils.git</connection>
         <url>https://github.com/Cosium/HateoasUtils</url>
-      <tag>HateoasUtils-2.0.0.0.cosium</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
