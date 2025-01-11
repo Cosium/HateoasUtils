@@ -1,12 +1,14 @@
 package rocks.spiffy.spring.hateoas.utils.uri.resolver;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriTemplate;
-
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriTemplate;
+import org.springframework.web.util.UriUtils;
 
 /**
  * Provides an easy way of getting request parameters out of a uri
@@ -39,7 +41,7 @@ public class ControllerUriResolver {
      * @return Resolve the map of template variables
      */
     public Map<String, String> resolve(String uri) {
-        return uriTemplate.match(uri);
+        return match(uri);
     }
 
     /**
@@ -50,7 +52,7 @@ public class ControllerUriResolver {
      * @return optionally the named uri parameter value if found
      */
     public Optional<String> resolve(String uri, String parameterToResolve) {
-        Map<String, String> match = uriTemplate.match(uri);
+        Map<String, String> match = match(uri);
 
         final Optional<String> matchFound;
 
@@ -88,5 +90,12 @@ public class ControllerUriResolver {
 
     public MethodInvocation getInvocation() {
         return invocation;
+    }
+
+    private Map<String, String> match(String uri) {
+        Map<String, String> match = new HashMap<>();
+        uriTemplate.match(uri)
+                .forEach((key, value) -> match.put(key, UriUtils.decode(value, StandardCharsets.UTF_8)));
+        return match;
     }
 }
