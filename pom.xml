@@ -4,7 +4,7 @@
 
     <groupId>rocks.spiffy</groupId>
     <artifactId>HateoasUtils</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.0.1.cosium-SNAPSHOT</version>
 
     <name>Hateoas Utils</name>
     <description>Some utilities to augment the functionality of the Spring Hateoas project</description>
@@ -129,32 +129,8 @@
                     </goals>
                 </execution>
             </executions>
-        </plugin>
-
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-                <execution>
-                    <id>sign-artifacts</id>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>sign</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-
-        <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.8</version>
-            <extensions>true</extensions>
             <configuration>
-                <serverId>ossrh</serverId>
-                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                <failOnError>false</failOnError>
             </configuration>
         </plugin>
 
