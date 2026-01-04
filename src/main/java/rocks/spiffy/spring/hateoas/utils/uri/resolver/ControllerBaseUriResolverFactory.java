@@ -1,9 +1,11 @@
 package rocks.spiffy.spring.hateoas.utils.uri.resolver;
 
+import java.util.Optional;
 import org.springframework.hateoas.server.core.AnnotationMappingDiscoverer;
 import org.springframework.hateoas.server.core.DummyInvocationUtils;
 import org.springframework.hateoas.server.core.LastInvocationAware;
 import org.springframework.hateoas.server.core.MappingDiscoverer;
+import org.springframework.hateoas.server.core.UriMapping;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +50,12 @@ public class ControllerBaseUriResolverFactory {
      */
     public ControllerUriResolver build() {
 
-        UriTemplate uriTemplate = new UriTemplate(DISCOVERER.getMapping(invocation.getTargetClass(), invocation.getTargetMethod()));
+        String mapping = Optional.ofNullable(DISCOVERER
+                        .getUriMapping(invocation.getTargetClass(), invocation.getTargetMethod()))
+                .map(UriMapping::getMapping)
+                .orElseThrow();
+
+        UriTemplate uriTemplate = new UriTemplate(mapping);
 
         return new ControllerUriResolver(uriTemplate, pathVariables, requestParams, invocation);
     }
